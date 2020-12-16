@@ -1,20 +1,22 @@
 import pygame
 from classes import *
 from mechanics import *
-from graphics import *
-
+# from graphics import *
+from constants import *
 
 pygame.init()
 
 pygame.display.init()
 
-screen = pygame.display.set_mode((400, 500))
+screen = pygame.display.set_mode((width, height))
 
 finished = False
 
 character = Character()
 
+clock = pygame.time.Clock()
 while not finished:
+
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             finished = True
@@ -24,4 +26,7 @@ while not finished:
             elif event.key == pygame.K_RIGHT:
                 move_hero_right(character)
     # FIXME: update visual
+
+    clock.tick(FPS)
+
 pygame.quit()
