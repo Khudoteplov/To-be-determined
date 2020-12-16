@@ -8,15 +8,15 @@ pygame.init()
 
 pygame.display.init()
 
-screen = pygame.display.set_mode((width, height))
+screen = pygame.display.set_mode((screen_width, screen_height))
 
 finished = False
 
 character = Character()
 
+
 clock = pygame.time.Clock()
 while not finished:
-
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             finished = True
