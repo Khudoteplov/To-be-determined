@@ -4,3 +4,4 @@ FPS = 30  # кадры в секунду
 platform_width = 50  # ширина платформы
 platform_height = 5  # высота платформы
 max_vy_speed = 20
+scroll_speed = 6
