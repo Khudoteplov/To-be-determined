@@ -5,7 +5,7 @@ from constants import *
 from classes import *
 pygame.init()
 
-size = 50  # ?? не знаю, тот ли это размер
+size = 16  
 
 
 platform_surface = pygame.Surface((platform_width, platform_height))
@@ -25,15 +25,13 @@ rect(background_surface, GREEN_TEA, (0, 0, screen_width, screen_height))
 
 
 ellipse(character_turned_left_surface, YELLOW,
-        (25, 50, size, size * 3))
-ellipse(character_turned_left_surface, YELLOW, (
-25 - int(size / 2), 50 + int(size / 5), size, size))
-
-
-    
-ellipse(character_turned_left_surface, YELLOW, (25, 50, size, size*3))
+        ((int(25 - size/2), 50 - size*3, size, size * 3))
 ellipse(character_turned_left_surface,
-        YELLOW, (25 + size - int(size/2), 50 + int(size/5), size, size))
+ YELLOW, (25 - size, 50 - size*3 + int(size/4), size, size))
 
 
     
+ellipse(character_turned_left_surface, YELLOW, 
+        (int(25 - size/2), 50 - size*3, size, size * 3))
+ellipse(character_turned_left_surface,
+        YELLOW, (25, 50 - size*3+ int(size/4), size, size))
