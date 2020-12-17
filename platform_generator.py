@@ -11,7 +11,7 @@ def remove_passed_platforms(height: int, platforms: list):
     """
     for platform in platforms:
         check = platform.y - height
-        if check > 600:
+        if check <  -screen_height:
             platforms.remove(platform)
 
 

@@ -4,7 +4,7 @@ from mechanics import *
 from graphics import *
 from constants import *
 from platform_generator import *
-scroll_speed = 10
+scroll_speed = 5
 
 
 def update_screen(screen1: pygame.Surface,
