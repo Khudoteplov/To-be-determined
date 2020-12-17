@@ -58,6 +58,8 @@ def move_hero(character: Character, dt: int):
     character.x += character.vx
     character.y += character.vy
     character.vy -= 1  # Если увеличить число, будет падать быстрее (гравитация)
+    if character.vy > 10:
+        character.vy = 10
 
 
 def check_bounce(character: Character, platform: Platform) -> bool:
@@ -67,7 +69,7 @@ def check_bounce(character: Character, platform: Platform) -> bool:
     Возвращает: **True**, если character столкнулся,
     **False** в противном случае
     """
-    if platform.y == character.y:
+    if platform.y - 2 <= character.y <= platform.y + 2:
         if (platform.x - platform.width / 2) <= character.x <= (platform.x + platform.width / 2):
             return True
         else:
