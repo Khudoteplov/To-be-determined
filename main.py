@@ -24,9 +24,15 @@ def update_screen(screen1: pygame.Surface,
         screen1.blit(platform_surface,
                      (platform1.x - platform1.width // 2,
                       -platform1.y + view_height1 + screen_height))
-    screen.blit(character_turned_left_surface,
-                (character1.x - 25,
-                 -character.y + view_height1 + screen_height - 50))
+    if character1.direction == 0:
+        screen.blit(character_turned_left_surface,
+                    (character1.x - 25,
+                     -character.y + view_height1 + screen_height - 50))
+    else:
+        screen.blit(character_turned_right_surface,
+                    (character1.x - 25,
+                     -character.y + view_height1 + screen_height - 50))
+
     if view_height1 < height1:
         view_height1 = min(view_height1 + scroll_speed, height1)
     pygame.display.update()

@@ -31,7 +31,7 @@ ellipse(character_turned_left_surface,
 
 
     
-ellipse(character_turned_left_surface, YELLOW, 
+ellipse(character_turned_right_surface, YELLOW,
         (int(25 - size/2), 50 - size*3, size, size * 3))
-ellipse(character_turned_left_surface,
+ellipse(character_turned_right_surface,
         YELLOW, (25, 50 - size*3+ int(size/4), size, size))
