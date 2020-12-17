@@ -1,4 +1,5 @@
 from classes import *
+import random
 
 
 def remove_passed_platforms(height: int, platforms: list):
@@ -8,11 +9,10 @@ def remove_passed_platforms(height: int, platforms: list):
     Аргументы: **height** - высота, на которой находится персонаж
     **platforms** - список платформ
     """
-    for p in range(len(platforms)):
-        check = platforms[p][1] - height
+    for platform in platforms:
+        check = platform.y - height
         if check > 600:
-            platforms.append([random.randint(0, screen_width), platforms[-1][1] - 50, 0])
-            platforms.pop(p)
+            platforms.remove(platform)
 
 
 def generate_platforms(bottom_height: int, top_height: int) -> list:
@@ -26,6 +26,7 @@ def generate_platforms(bottom_height: int, top_height: int) -> list:
     platforms = []
     while h > bottom_height:
         x = random.randint(0, screen_width)
-        platforms.append([x, h, 0])
+        new_platform = Platform(type=None, x=x, y=h)
+        platforms.append(new_platform)
         h -= 50
-        return platforms
+    return platforms

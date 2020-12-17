@@ -4,7 +4,7 @@ from mechanics import *
 from graphics import *
 from constants import *
 from platform_generator import *
-scroll_speed = 20
+scroll_speed = 2
 
 
 def update_screen(screen1: pygame.Surface,
@@ -18,7 +18,9 @@ def update_screen(screen1: pygame.Surface,
     **character1** - персонаж
     **platforms1** - список объектов класса Platform
     """
+    screen1.fill((255, 255, 255))
     screen1.blit(background_surface, (0, 0))  # отрисовка фона
+
     for platform1 in platforms1:
         screen1.blit(platform_surface,
                      (platform1.x - platform1.width // 2,
@@ -26,9 +28,9 @@ def update_screen(screen1: pygame.Surface,
     screen.blit(character_turned_right_surface,
                 (character1.x - 25,
                  -character.y + view_height1 + screen_height - 50))
-    if view_height1 < height:
+    if view_height1 < height1:
         view_height1 = min(view_height1 + scroll_speed, height1)
-
+    pygame.display.update()
     return view_height1
 
 
@@ -37,6 +39,11 @@ pygame.init()
 pygame.display.init()
 
 screen = pygame.display.set_mode((screen_width, screen_height))
+surf1 = pygame.Surface((screen_width, screen_height))
+rect(surf1, BROWN, (0, 0, platform_width, platform_height))
+screen.blit(background_surface, (0, 0))
+
+
 
 finished = False
 
@@ -48,8 +55,8 @@ height = 0
 point_of_view_height = 0
 platforms = []
 top_generated_level = 10 * screen_height
-platforms += generate_platforms(0, 10 * screen_height)
-
+platforms.extend(generate_platforms(0, 10 * screen_height))
+update_screen(screen, height, point_of_view_height, character, platforms)
 while not finished:
     move_hero(character, 1)
     for platform in platforms:
