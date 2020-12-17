@@ -1,3 +1,5 @@
+from constants import *
+
 class Character:
     def __init__(self):
         self.x = 0
@@ -7,10 +9,10 @@ class Character:
 
 
 class Platform:
-    def __init__(self, type, x, y,
-                 platform_width=50, platform_height=5, appearance=None):
+    def __init__(self, type, x, y, width=platform_width,
+                 height=platform_height, appearance=None):
         self.type = type
         self.x = x
         self.y = y
-        self.width = platform_width
-        self.height = platform_height
+        self.width = width
+        self.height = height
