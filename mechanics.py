@@ -69,9 +69,12 @@ def check_bounce(character: Character, platform: Platform) -> bool:
     Возвращает: **True**, если character столкнулся,
     **False** в противном случае
     """
-    if platform.y - 2 <= character.y <= platform.y + 2:
-        if (platform.x - platform.width / 2) <= character.x <= (platform.x + platform.width / 2):
-            return True
+    if character.vy < 0:
+        if platform.y - platform_height <= character.y <= platform.y:
+            if abs(platform.x - character.x) <= platform.width:
+                return True
+            else:
+                return False
         else:
             return False
     else:
