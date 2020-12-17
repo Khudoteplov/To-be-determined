@@ -34,7 +34,7 @@ def update_screen(screen1: pygame.Surface,
                      -character.y + view_height1 + screen_height - 50))
 
     if view_height1 < height1:
-        view_height1 = min(view_height1 + scroll_speed, height1)
+        view_height1 = min(view_height1 + scroll_speed, height1 - 10)
     pygame.display.update()
     return view_height1
 
@@ -53,33 +53,45 @@ character = Character()
 clock = pygame.time.Clock()
 
 height = 0
-point_of_view_height = 0
+point_of_view_height = -10
 platforms = []
-top_generated_level = 1 * screen_height
-platforms.extend(generate_platforms(0, 1* screen_height))
+bottom_platform = Platform(None, screen_width//2, 0, screen_width*2)
+platforms.append(bottom_platform)
+top_generated_level = 5 * screen_height
+platforms.extend(generate_platforms(0, 5 * screen_height))
 update_screen(screen, height, point_of_view_height, character, platforms)
-while not finished:
-    move_hero(character, 1)
-    for platform in platforms:
-        if check_bounce(character, platform):
-            bounce(character, platform)
-            height = platform.y
-            if (top_generated_level - height) < 2 * screen_height:
-                platforms.extend(generate_platforms(top_generated_level,
-                                top_generated_level + 5 * screen_height))
-                top_generated_level += 5 * screen_height
-            break
-    remove_passed_platforms(point_of_view_height, platforms)
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            finished = True
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_LEFT:
-                move_hero_left(character)
-            elif event.key == pygame.K_RIGHT:
-                move_hero_right(character)
-    point_of_view_height = update_screen(screen, height, point_of_view_height,
-                                         character, platforms)
-    clock.tick(FPS)
+
+
+def game():
+    global finished, platforms, height, \
+        point_of_view_height, top_generated_level
+
+    while not finished:
+        move_hero(character, 1)
+        for platform in platforms:
+            if check_bounce(character, platform):
+                bounce(character, platform)
+                height = platform.y
+                if (top_generated_level - height) < 2 * screen_height:
+                    platforms.extend(generate_platforms(top_generated_level,
+                                                        top_generated_level + 5 * screen_height))
+                    top_generated_level += 5 * screen_height
+                break
+        remove_passed_platforms(point_of_view_height, platforms)
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                finished = True
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_LEFT:
+                    move_hero_left(character)
+                elif event.key == pygame.K_RIGHT:
+                    move_hero_right(character)
+        point_of_view_height = update_screen(screen, height,
+                                             point_of_view_height,
+                                             character, platforms)
+        clock.tick(FPS)
+
+
+game()
 
 pygame.quit()
