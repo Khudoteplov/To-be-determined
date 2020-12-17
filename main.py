@@ -4,7 +4,7 @@ from mechanics import *
 from graphics import *
 from constants import *
 from platform_generator import *
-scroll_speed = 2
+scroll_speed = 10
 
 
 def update_screen(screen1: pygame.Surface,
@@ -25,7 +25,7 @@ def update_screen(screen1: pygame.Surface,
         screen1.blit(platform_surface,
                      (platform1.x - platform1.width // 2,
                       -platform1.y + view_height1 + screen_height))
-    screen.blit(character_turned_right_surface,
+    screen.blit(character_turned_left_surface,
                 (character1.x - 25,
                  -character.y + view_height1 + screen_height - 50))
     if view_height1 < height1:
@@ -39,10 +39,6 @@ pygame.init()
 pygame.display.init()
 
 screen = pygame.display.set_mode((screen_width, screen_height))
-surf1 = pygame.Surface((screen_width, screen_height))
-rect(surf1, BROWN, (0, 0, platform_width, platform_height))
-screen.blit(background_surface, (0, 0))
-
 
 
 finished = False
@@ -54,8 +50,8 @@ clock = pygame.time.Clock()
 height = 0
 point_of_view_height = 0
 platforms = []
-top_generated_level = 10 * screen_height
-platforms.extend(generate_platforms(0, 10 * screen_height))
+top_generated_level = 1 * screen_height
+platforms.extend(generate_platforms(0, 1* screen_height))
 update_screen(screen, height, point_of_view_height, character, platforms)
 while not finished:
     move_hero(character, 1)
@@ -63,9 +59,9 @@ while not finished:
         if check_bounce(character, platform):
             bounce(character, platform)
             height = platform.y
-            if (top_generated_level - height) < screen_height:
-                generate_platforms(top_generated_level,
-                                   top_generated_level + 5 * screen_height)
+            if (top_generated_level - height) < 2 * screen_height:
+                platforms.extend(generate_platforms(top_generated_level,
+                                top_generated_level + 5 * screen_height))
                 top_generated_level += 5 * screen_height
             break
     remove_passed_platforms(point_of_view_height, platforms)

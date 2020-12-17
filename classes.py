@@ -5,7 +5,7 @@ class Character:
         self.x = screen_width//2
         self.y = 0
         self.vx = 0
-        self.vy = 10
+        self.vy = max_vy_speed
         self.direction = None
 
 

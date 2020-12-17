@@ -38,12 +38,12 @@ def move_hero(character: Character, dt: int):
     """
     key = pygame.key.get_pressed()
     if key[pygame.K_RIGHT]:
-        if character.vx < 10:   # 10 - max скорость по оси х
+        if character.vx < max_vy_speed:   # 10 - max скорость по оси х
             character.vx += 1
         character.direction = 1     # Направление движения (0 - налево, 1 - направо)
 
     elif key[pygame.K_LEFT]:
-        if character.vx > -10:  # 10 - max скорость по оси y
+        if character.vx > -max_vy_speed:  # 10 - max скорость по оси y
             character.vx -= 1
         character.direction = 0     # Направление движения (0 - налево, 1 - направо)
     else:
@@ -58,8 +58,8 @@ def move_hero(character: Character, dt: int):
     character.x += character.vx
     character.y += character.vy
     character.vy -= 1  # Если увеличить число, будет падать быстрее (гравитация)
-    if character.vy > 10:
-        character.vy = 10
+    if character.vy > max_vy_speed:
+        character.vy = max_vy_speed
 
 
 def check_bounce(character: Character, platform: Platform) -> bool:
@@ -69,7 +69,7 @@ def check_bounce(character: Character, platform: Platform) -> bool:
     Возвращает: **True**, если character столкнулся,
     **False** в противном случае
     """
-    if platform.y - 2 <= character.y <= platform.y + 2:
+    if character.vy//2 <= character.y - platform.y <= -character.vy//2:
         if (platform.x - platform.width / 2) <= character.x <= (platform.x + platform.width / 2):
             return True
         else:
@@ -83,4 +83,4 @@ def bounce(character: Character, platform: Platform):
     Отскок персонажа от платформы
     """
     if check_bounce(character, platform):
-        character.vy = 10  # 10 - max скорость по оси y
+        character.vy = max_vy_speed  # 10 - max скорость по оси y

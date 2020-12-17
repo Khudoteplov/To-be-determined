@@ -9,8 +9,8 @@ size = 16
 
 
 platform_surface = pygame.Surface((platform_width, platform_height))
-character_turned_left_surface = pygame.Surface((50, 50))
-character_turned_right_surface = pygame.Surface((50, 50))
+character_turned_left_surface = pygame.Surface((50, 50), pygame.SRCALPHA)
+character_turned_right_surface = pygame.Surface((50, 50), pygame.SRCALPHA)
 background_surface = pygame.Surface((screen_width, screen_height))
 
 BROWN = (73, 50, 36)
