@@ -47,10 +47,10 @@ def move_hero(character: Character):
             character.vx -= 1
         elif character.vx < 0:
             character.vx += 1
-    if character.x > 850:   # Правый край + 50
+    if character.x > screen_width + 50:   # Правый край + 50
         character.x = -50
     elif character.x < -50:
-        character.x = 850   # Правый край + 50
+        character.x = screen_width + 50   # Правый край + 50
     character.x += character.vx
     character.y += character.vy
 
@@ -62,14 +62,14 @@ def check_bounce(character: Character, platform: Platform) -> bool:
     Возвращает: **True**, если character столкнулся,
     **False** в противном случае
     """
-    for v in platform:
-        if v[1] == character.y:
-            if (character.x - 15) <= v[0] <= (character.x + 15):    # 15 - ширина платформы пополам
-                return True
-            else:
-                return False
+    if platform.y + platform.hight == character.y:
+        if ((character.x + 25) - platform.width / 2)\
+                <= platform.x + platform.width / 2 <= ((character.x + 25) + platform.width / 2):
+            return True
         else:
             return False
+    else:
+        return False
 
 
 def bounce(character: Character, platform: Platform):

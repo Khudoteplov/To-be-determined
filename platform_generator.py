@@ -11,7 +11,7 @@ def remove_passed_platforms(height: int, platforms: list):
     for p in range(len(platforms)):
         check = platforms[p][1] - height
         if check > 600:
-            platforms.append([random.randint(0, 700), platforms[-1][1] - 50, 0])
+            platforms.append([random.randint(0, screen_width), platforms[-1][1] - 50, 0])
             platforms.pop(p)
 
 
@@ -25,7 +25,7 @@ def generate_platforms(bottom_height: int, top_height: int) -> list:
     h = top_height
     platforms = []
     while h > bottom_height:
-        x = random.randint(0, 700)
+        x = random.randint(0, screen_width)
         platforms.append([x, h, 0])
         h -= 50
         return platforms
