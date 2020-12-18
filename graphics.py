@@ -94,10 +94,6 @@ polygon(character_turned_left_surface, GREEN,
         ((25 - int(size/4), 50 - size*3), (25 - 3*int(size/4), 0), (25 + int(size/4), 50 - size*3)))
 polygon(character_turned_left_surface, GREEN,
         ((25 - int(size/4), 50 - size*3), (25 + 3*int(size/4), 0), (25 + int(size/4), 50 - size*3)))
-polygon(character_turned_left_surface, GREEN,
-        ((25 - int(size/4), 50 - size*3), (25 - 3*int(size/4), 50), (25 + int(size/4), 50 - size*3)))
-polygon(character_turned_left_surface, GREEN,
-        ((25 - int(size/4), 50 - size*3), (25, 50), (25 + int(size/4), 50 - size*3)))
 
 
 ellipse(character_turned_right_surface, YELLOW,
