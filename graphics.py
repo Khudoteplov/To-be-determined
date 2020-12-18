@@ -18,6 +18,9 @@ spring_coiled_surface = pygame.Surface((50, 50))
 spring_rectified_surface = pygame.Surface((50, 50))
 character_turned_left_surface = pygame.Surface((50, 50))
 character_turned_right_surface = pygame.Surface((50, 50))
+platform_surface = pygame.Surface((platform_width, platform_height))
+character_turned_left_surface = pygame.Surface((50, 50), pygame.SRCALPHA)
+character_turned_right_surface = pygame.Surface((50, 50), pygame.SRCALPHA)
 background_surface = pygame.Surface((screen_width, screen_height))
 
 BROWN = (73, 50, 36)
@@ -70,7 +73,7 @@ ellipse(character_turned_left_surface,
 polygon(character_turned_left_surface, GREEN,
         (25 - int(size/4), 50 - size*3), (25, 50), (25 + int(size/4), 50 - size*3))
 polygon(character_turned_left_surface, GREEN,
-        (25 - int(size/4), 50 - size*3), (25 - , 50), (25 + int(size/4), 50 - size*3))
+        (25 - int(size/4), 50 - size*3), (25 - 3*int(size/4), 50), (25 + int(size/4), 50 - size*3))
 polygon(character_turned_left_surface, GREEN,
         (25 - int(size/4), 50 - size*3), (25, 50), (25 + int(size/4), 50 - size*3))
 
@@ -82,6 +85,6 @@ ellipse(character_turned_left_surface,
 polygon(character_turned_left_surface, GREEN,
         (25 - int(size/4), 50 - size*3), (25, 50), (25 + int(size/4), 50 - size*3))
 polygon(character_turned_left_surface, GREEN,
-        (25 - int(size/4), 50 - size*3), (25 - , 50), (25 + int(size/4), 50 - size*3))
+        (25 - int(size/4), 50 - size*3), (25 - 3*int(size/4), 50), (25 + int(size/4), 50 - size*3))
 polygon(character_turned_left_surface, GREEN,
         (25 - int(size/4), 50 - size*3), (25, 50), (25 + int(size/4), 50 - size*3))

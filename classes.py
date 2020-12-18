@@ -2,10 +2,11 @@ from constants import *
 
 class Character:
     def __init__(self):
-        self.x = 0
+        self.x = screen_width//2
         self.y = 0
         self.vx = 0
-        self.vy = 0
+        self.vy = max_vy_speed
+        self.direction = None
 
 
 class Platform:
