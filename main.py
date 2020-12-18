@@ -55,11 +55,62 @@ def display_score(score):
     score_text_surface = score_font.render('Score: ' + str(score), True, (200, 0, 0))
     screen.blit(score_text_surface, (0, 0))
 
-def view_leaderboard():
-    pass
+
+def view_leaderboard(screen1):
+    screen.blit(menu_background_surface, (0, 0))
+    leaderboard = open('leaderboard.txt', 'r')
+    results = []
+    fnt = pygame.font.SysFont('Comic Sans MS', 30)
+    for line in leaderboard:
+        if len(line) > 2:
+            results.append(line.split(' '))
+
+    y = 50
+    for i in range(min(len(results), 5)):
+        txt_surface = fnt.render(results[i][0] + '  ' + results[i][1], True, (0, 0, 0))
+        screen1.blit(txt_surface, (100, y))
+        y += 100
+    leaderboard.close()
+    menu_button = Button(screen_width // 2 - 40, screen_height - 100,
+                         80, 50, text='Menu')
+    screen1.blit(menu_button.surface, (menu_button.x, menu_button.y))
+    pygame.display.update()
+    finished = False
+
+    while not finished:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                return 'QUIT'
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                if menu_button.pressed(event.pos):
+                    return 0
+
+    pygame.display.update()
+
 
 def submit_result(name, result):
-    pass
+    leaderboard = open('leaderboard.txt', 'r')
+    results = []
+    fnt = pygame.font.SysFont('Comic Sans MS', 30)
+    for line in leaderboard:
+        if len(line) > 2:
+            results.append(line.split(' '))
+    leaderboard.close()
+
+    new_leaderboard = open('leaderboard.txt', 'w')
+    printed = False
+    for result1 in results:
+        if (int(result1[1]) >= result) or printed:
+            print('{} {}'.format(result1[0], result1[1]), file=new_leaderboard)
+        elif not printed:
+            print('{} {}'.format(name, str(result)), file=new_leaderboard)
+            printed = True
+            print('{} {}'.format(result1[0], result1[1]), file=new_leaderboard)
+    new_leaderboard.close()
+
+
+
+
 
 def menu(controller):
     pygame.init()
@@ -96,7 +147,8 @@ def menu(controller):
                         menu('QUIT')
                         return 'QUIT'
                     elif leaderboard_button.pressed(event.pos):
-                        view_leaderboard()
+                        menu(view_leaderboard(screen))
+                        return 0
                 if event.type == pygame.QUIT:
                     menu('QUIT')
                     return 'QUIT'
@@ -206,5 +258,7 @@ def game():
             return height
     return height
 
+
 menu(game_over(game()))
+
 pygame.quit()
