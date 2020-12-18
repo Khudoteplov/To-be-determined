@@ -17,3 +17,11 @@ class Platform:
         self.y = y
         self.width = width
         self.height = height
+
+
+class Spring:
+    def __init__(self, x, y, width=spring_width, height=spring_height):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height

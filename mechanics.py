@@ -59,7 +59,7 @@ def move_hero(character: Character, dt: int):
     character.y += character.vy
     character.vy -= 1  # Если увеличить число, будет падать быстрее (гравитация)
     if character.vy > max_vy_speed:
-        character.vy = max_vy_speed
+        character.vy -= 1
 
 
 def check_bounce(character: Character, platform: Platform) -> bool:
@@ -84,3 +84,50 @@ def bounce(character: Character, platform: Platform):
     """
     if check_bounce(character, platform):
         character.vy = max_vy_speed  # 10 - max скорость по оси y
+
+
+def sticking(character: Character, platform: Platform):
+    """
+    Прилипание персонажа к липким платформам
+    """
+    if check_bounce(character, platform):
+        if platform.type == 1:
+            character.vy = 0
+
+
+def destroy(character: Character, platform: Platform):
+    """
+    Разрушение платформ
+    """
+    if check_bounce(character, platform):
+        if platform.type == 2:
+            character.vy *= -1
+            delete(platform)
+
+
+def delete(platform: Platform):
+    # Не уверен, что так можно сделать
+    pygame.delete(platform)
+
+
+def check_spring(character: Character, spring: Spring) -> bool:
+    """
+    Функция проверяет, не сталкивается ли персонаж с пружиной
+    Возвращает: **True**, если character столкнулся,
+    **False** в противном случае
+    """
+    if character.vy//2 <= character.y - spring.y <= -character.vy//2:
+        if (spring.x - spring.width / 2) <= character.x <= (spring.x + spring.width / 2):
+            return True
+        else:
+            return False
+    else:
+        return False
+
+
+def bounce_on_spring(character: Character, spring: Spring):
+    """
+    Отскок персонажа от пружины
+    """
+    if check_spring(character, spring):
+        character.vy = 2 * max_vy_speed  # 10 - max скорость по оси y
