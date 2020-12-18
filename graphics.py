@@ -76,24 +76,24 @@ ellipse(character_turned_left_surface, YELLOW, (int(25 - size/2), 50 - size*3, s
 ellipse(character_turned_left_surface,
         YELLOW, (25 - size, 50 - size*3 + int(size/4), size, size))
 polygon(character_turned_left_surface, GREEN,
-<<<<<<< HEAD
-        (25 - int(size/4), 50 - size*3), (25, 0), (25 + int(size/4), 50 - size*3))
+# <<<<<<< HEAD
+        ((25 - int(size/4), 50 - size*3), (25, 0), (25 + int(size/4), 50 - size*3)))
 polygon(character_turned_left_surface, GREEN,
-        (25 - int(size/4), 50 - size*3), (25 - 3*int(size/4), 0), (25 + int(size/4), 50 - size*3))
+        ((25 - int(size/4), 50 - size*3), (25 - 3*int(size/4), 0), (25 + int(size/4), 50 - size*3)))
 polygon(character_turned_left_surface, GREEN,
-        (25 - int(size/4), 50 - size*3), (25 + 3*int(size/4), 0), (25 + int(size/4), 50 - size*3))
+        ((25 - int(size/4), 50 - size*3), (25 + 3*int(size/4), 0), (25 + int(size/4), 50 - size*3)))
 
 
 ellipse(character_turned_left_surface, YELLOW, 
-        int(25 - size/2), 50 - size*3, size, size*3))
+        (int(25 - size/2), 50 - size*3, size, size*3))
 ellipse(character_turned_left_surface,
         YELLOW, (25, 50 - size*3+ int(size/4), size, size))
 polygon(character_turned_left_surface, GREEN,
-        (25 - int(size/4), 50 - size*3), (25, 0), (25 + int(size/4), 50 - size*3))
+        ((25 - int(size/4), 50 - size*3), (25, 0), (25 + int(size/4), 50 - size*3)))
 polygon(character_turned_left_surface, GREEN,
-        (25 - int(size/4), 50 - size*3), (25 - 3*int(size/4), 0), (25 + int(size/4), 50 - size*3))
+        ((25 - int(size/4), 50 - size*3), (25 - 3*int(size/4), 0), (25 + int(size/4), 50 - size*3)))
 polygon(character_turned_left_surface, GREEN,
-        (25 - int(size/4), 50 - size*3), (25 + 3*int(size/4), 0), (25 + int(size/4), 50 - size*3))
+        ((25 - int(size/4), 50 - size*3), (25 + 3*int(size/4), 0), (25 + int(size/4), 50 - size*3)))
 polygon(character_turned_left_surface, GREEN,
         ((25 - int(size/4), 50 - size*3), (25 - 3*int(size/4), 50), (25 + int(size/4), 50 - size*3)))
 polygon(character_turned_left_surface, GREEN,
