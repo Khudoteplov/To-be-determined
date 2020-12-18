@@ -11,14 +11,14 @@ spring_step_coiled = 3
 
 
 platform_surface = pygame.Surface((platform_width, platform_height), pygame.SRCALPHA)
-platform_surface_moving = pygame.Surface((platform_width, platform_height))
+platform_surface_moving = pygame.Surface((platform_width, platform_height), pygame.SRCALPHA)
 platform_surface_disappearing = pygame.Surface((platform_width, platform_height), pygame.SRCALPHA)
-platform_surface_trap = pygame.Surface((platform_width, platform_height))
-spring_coiled_surface = pygame.Surface((50, 50))
-spring_rectified_surface = pygame.Surface((50, 50))
-character_turned_left_surface = pygame.Surface((50, 50))
-character_turned_right_surface = pygame.Surface((50, 50))
-platform_surface = pygame.Surface((platform_width, platform_height))
+platform_surface_trap = pygame.Surface((platform_width, platform_height), pygame.SRCALPHA)
+spring_coiled_surface = pygame.Surface((50, 50), pygame.SRCALPHA)
+spring_rectified_surface = pygame.Surface((50, 50), pygame.SRCALPHA)
+character_turned_left_surface = pygame.Surface((50, 50), pygame.SRCALPHA)
+character_turned_right_surface = pygame.Surface((50, 50), pygame.SRCALPHA)
+platform_surface = pygame.Surface((platform_width, platform_height), pygame.SRCALPHA)
 character_turned_left_surface = pygame.Surface((50, 50), pygame.SRCALPHA)
 character_turned_right_surface = pygame.Surface((50, 50), pygame.SRCALPHA)
 background_surface = pygame.Surface((screen_width, screen_height))
@@ -71,11 +71,11 @@ ellipse(character_turned_left_surface, YELLOW,
 ellipse(character_turned_left_surface,
         YELLOW, (25 - size, 50 - size*3 + int(size/4), size, size))
 polygon(character_turned_left_surface, GREEN,
-        (25 - int(size/4), 50 - size*3), (25, 50), (25 + int(size/4), 50 - size*3))
+        (25 - int(size/4), 50 - size*3), (25, 0), (25 + int(size/4), 50 - size*3))
 polygon(character_turned_left_surface, GREEN,
-        (25 - int(size/4), 50 - size*3), (25 - 3*int(size/4), 50), (25 + int(size/4), 50 - size*3))
+        (25 - int(size/4), 50 - size*3), (25 - 3*int(size/4), 0), (25 + int(size/4), 50 - size*3))
 polygon(character_turned_left_surface, GREEN,
-        (25 - int(size/4), 50 - size*3), (25, 50), (25 + int(size/4), 50 - size*3))
+        (25 - int(size/4), 50 - size*3), (25 + 3*int(size/4), 0), (25 + int(size/4), 50 - size*3))
 
 
 ellipse(character_turned_left_surface, YELLOW, 
@@ -83,8 +83,8 @@ ellipse(character_turned_left_surface, YELLOW,
 ellipse(character_turned_left_surface,
         YELLOW, (25, 50 - size*3+ int(size/4), size, size))
 polygon(character_turned_left_surface, GREEN,
-        (25 - int(size/4), 50 - size*3), (25, 50), (25 + int(size/4), 50 - size*3))
+        (25 - int(size/4), 50 - size*3), (25, 0), (25 + int(size/4), 50 - size*3))
 polygon(character_turned_left_surface, GREEN,
-        (25 - int(size/4), 50 - size*3), (25 - 3*int(size/4), 50), (25 + int(size/4), 50 - size*3))
+        (25 - int(size/4), 50 - size*3), (25 - 3*int(size/4), 0), (25 + int(size/4), 50 - size*3))
 polygon(character_turned_left_surface, GREEN,
-        (25 - int(size/4), 50 - size*3), (25, 50), (25 + int(size/4), 50 - size*3))
+        (25 - int(size/4), 50 - size*3), (25 + 3*int(size/4), 0), (25 + int(size/4), 50 - size*3))
