@@ -27,9 +27,9 @@ def generate_platforms(bottom_height: int, top_height: int) -> list:
     while h > bottom_height:
         x = random.randint(0, screen_width)
         p = random.randint(0, 100)
-        if p <= 800:
+        if p <= 80:
             typ = 0    # Обычная платформа
-        elif p <= 900:
+        elif p <= 90:
             typ = 1    # Липкая платформа
         else:
             typ = 2    # Разрушающаяся платформа
