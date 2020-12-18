@@ -130,4 +130,4 @@ def bounce_on_spring(character: Character, spring: Spring):
     Отскок персонажа от пружины
     """
     if check_spring(character, spring):
-        character.vy = 2 * max_vy_speed  # 10 - max скорость по оси y
+        character.vy =  max_vy_speed + 10 # 10 - max скорость по оси y

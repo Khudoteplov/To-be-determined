@@ -12,7 +12,7 @@ my_font = pygame.font.SysFont('Comic Sans MS', 30)  # шрифт
 
 
 def update_screen(screen1: pygame.Surface,
-                  height1, view_height1, character1, platforms1):
+                  height1, view_height1, character1, platforms1, springs1):
     """
     Функция обновляет картинку на экране
 
@@ -31,6 +31,11 @@ def update_screen(screen1: pygame.Surface,
         screen1.blit(platform_surface,
                      (platform1.x - platform1.width // 2,
                       -platform1.y + view_height1 + screen_height))
+    for spring1 in springs1:
+
+        screen.blit(spring_coiled_surface, (spring1.x - 25,
+                    -spring1.y + view_height1 + screen_height - 50))
+
     if character1.direction == 0:
         screen.blit(character_turned_left_surface,
                     (character1.x - 25,
@@ -97,10 +102,6 @@ def menu(controller):
                     return 'QUIT'
 
 
-
-
-
-
 def game_over(score):
     if score == 'QUIT':
         return 'QUIT'
@@ -142,8 +143,6 @@ def game_over(score):
             pygame.display.update()
 
 
-
-
 pygame.init()
 
 pygame.display.init()
@@ -161,28 +160,37 @@ def game():
     height = 0
     point_of_view_height = -10
     platforms = []
+    springs = []
     bottom_platform = Platform(None, screen_width // 2, 0, screen_width * 2)
     platforms.append(bottom_platform)
-    top_generated_level = 5 * screen_height
-    platforms.extend(generate_platforms(0, 5 * screen_height))
-    update_screen(screen, height, point_of_view_height, character, platforms)
+    top_generated_level = 2 * screen_height
+    platforms.extend(generate_platforms(0, 2 * screen_height))
+    update_screen(screen, height, point_of_view_height,
+                  character, platforms, springs)
 
     while not finished:
         point_of_view_height = update_screen(screen, height,
                                              point_of_view_height,
-                                             character, platforms)
+                                             character, platforms, springs)
         display_score(height)
         pygame.display.update()
         clock.tick(FPS)
         move_hero(character, 1)
+        for spring in springs:
+            if check_spring(character, spring):
+                bounce_on_spring(character, spring)
+                height = spring.y
         for platform in platforms:
             if check_bounce(character, platform):
                 bounce(character, platform)
                 height = platform.y
                 if (top_generated_level - height) < 2 * screen_height:
-                    platforms.extend(generate_platforms(top_generated_level,
-                                                        top_generated_level +
-                                                        5 * screen_height))
+                    new_platforms = generate_platforms(top_generated_level,
+                                                       top_generated_level +
+                                                        5 * screen_height)
+                    for platform1 in new_platforms:
+                        springs.extend(generate_springs(platform1))
+                    platforms.extend(new_platforms)
                     top_generated_level += 5 * screen_height
                 break
         remove_passed_platforms(point_of_view_height, platforms)
